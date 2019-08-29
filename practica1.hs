@@ -20,6 +20,14 @@ blackPx  = PixelRGB8 0 0 0
 imageAlphabet :: Set Int
 imageAlphabet  = Set.fromList [0, 1, 2, 3]
 
+--[Split image]
+split ImagePixels->Int-> ImagePixels
+| img 0 = List.take a (transpose (snd(Prelude.splitAt a img)))
+| img 1 = List.take a (transpose (fst(Prelude.splitAt a img)))
+| img 2 = List.drop a (transpose (fst(Prelude.splitAt a img))) 
+| img 3 = List.drop a (transpose (snd(Prelude.splitAt a img))) 
+where a = (length img)/2
+
 type ImagePixels = [[PixelRGB8]]
 
 {- | Represents the Transition Function (delta function) of a FiniteAutomata.
